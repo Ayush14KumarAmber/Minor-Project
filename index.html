@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elite Voting DApp</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="brand">Solet</div>
+    <button id="connectBtn" class="btn primary">Connect Wallet</button>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Factory</h2>
+      <div class="row">
+        <input type="text" id="factoryAddress" placeholder="Factory address (0x...)" />
+        <button id="loadFactory" class="btn">Load</button>
+      </div>
+      <div class="muted" id="networkInfo"></div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Create Poll</h3>
+        <label>Proposals (comma-separated)</label>
+        <input type="text" id="proposals" placeholder="Option A, Option B" />
+        <label>Quadratic</label>
+        <label class="switch">
+          <input type="checkbox" id="quadratic" checked />
+          <span class="slider"></span>
+        </label>
+        <label>Start (minutes from now)</label>
+        <input type="number" id="startMins" value="1" min="0" />
+        <label>Duration (minutes)</label>
+        <input type="number" id="durationMins" value="60" min="1" />
+        <button id="createPoll" class="btn primary">Create</button>
+        <div id="createStatus" class="muted"></div>
+      </div>
+
+      <div class="card">
+        <h3>Polls</h3>
+        <div class="row">
+          <input type="number" id="pollId" min="0" placeholder="Poll ID" />
+          <button id="loadPoll" class="btn">Load</button>
+        </div>
+        <div id="pollInfo" class="muted"></div>
+      </div>
+    </section>
+
+    <section class="card" id="pollSection" style="display:none;">
+      <h2 id="pollTitle">Poll</h2>
+      <div id="phaseInfo" class="badge"></div>
+      <div id="timeInfo" class="muted"></div>
+      <div id="proposalsList" class="list"></div>
+
+      <div class="actions">
+        <div class="row">
+          <input type="text" id="registerList" placeholder="Register voters (comma 0x..)" />
+          <button id="registerBtn" class="btn">Register</button>
+        </div>
+        <div class="row">
+          <input type="text" id="delegateTo" placeholder="Delegate to 0x..." />
+          <button id="delegateBtn" class="btn">Delegate</button>
+          <button id="undelegateBtn" class="btn">Undelegate</button>
+        </div>
+        <div class="row">
+          <input type="number" id="voteProposalId" placeholder="Proposal ID" />
+          <button id="voteBtn" class="btn primary">Vote</button>
+        </div>
+        <div class="row">
+          <button id="startRegBtn" class="btn">Start Registration</button>
+          <button id="startVoteBtn" class="btn">Start Voting</button>
+          <button id="endPollBtn" class="btn">End Poll</button>
+        </div>
+      </div>
+      <div id="actionStatus" class="muted"></div>
+    </section>
+  </main>
+
+  <footer class="footer">A Decentralized Voting System</footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
